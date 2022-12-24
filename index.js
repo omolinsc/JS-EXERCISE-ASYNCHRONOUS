@@ -7,16 +7,49 @@ console.log("- - - - - ITERATION # 1 - - - - -");
 // hacer un .fetch() y recibir los datos que devuelve. Imprimelo mediante un 
 // console.log(). Para ello, es necesario que crees un .html y un .js.
 
-fetch('https://api.agify.io?name=michael')      //* pedimos la información
-    .then((response) => {                       //* recibimos el paquete
-        return response.json
-    })
-    .then((myJson) => {                         //* ya tenemos el resultado
-        console.log(myJson);
-    })
-    .chatch((error) => {
-        console.log("ERROR EN LA RECEPCIÓN DE DATOS");
-    })
+
+function renderMichael(michael){
+
+        const container = document.createElement("div");
+
+        const h1 = document.createElement("h1");
+            h1.textContent = michael.name;
+        const h2Age = document.createElement("h2");
+            h2Age.textContent = michael.age;
+        const h2Count = document.createElement("h2");
+            h2Count.textContent = michael.count;
+
+        document.body.appendChild(container);    
+        container.appendChild(h1);
+        container.appendChild(h2Age);
+        container.appendChild(h2Count);
+};
+
+
+
+function getMichael() {   
+    fetch('https://api.agify.io?name=michael')      //* pedimos la información
+        .then(function (response) { 
+            console.log("recibo la información")    //* recibimos el paquete
+            return response.json();
+        })
+        .then(function (result) {                   //* ya tenemos el resultado
+            renderMichael(result);
+            console.log("abro la información");
+        })
+        .catch(function (error) {
+            console.log("ERROR EN LA RECEPCIÓN DE DATOS");
+            console.log(error);
+        });
+};
+
+function init(){
+    getMichael();
+};
+
+window.onload = init;
+
+
 
 // 1.2 Dado el siguiente javascript y html. Añade la funcionalidad necesaria usando 
 // fetch() para hacer una consulta a la api cuando se haga click en el botón, 
