@@ -52,7 +52,7 @@ function renderBase(base){
 
         // creamos el botón para borrar línea, lo introducimos en el HTML y le damos un eventListener
         const button = document.createElement("button");
-        button.setAttribute("style", "background-color: red; margin-left: 10px; cursor: pointer;");
+        button.setAttribute("style", "background-color: red; margin-left: 10px; cursor: pointer; border-radius: 50%;");
         button.textContent = "X";
         p.appendChild(button);
         button.addEventListener("click", removeLine);
@@ -60,6 +60,7 @@ function renderBase(base){
 
     // creo un separador para cada consulta
     const separator = document.createElement("span");
+    separator.setAttribute("style","color:red; font-weight:bold;")
     separator.textContent = "- - - - - - - - - - End Of " + base.name + " - - - - - - - - - -";
     container.appendChild(separator);
 };
