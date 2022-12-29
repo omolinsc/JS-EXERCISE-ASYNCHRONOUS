@@ -130,6 +130,24 @@ console.log("- - - - - ITERATION # 2 - - - - -");
 
 // runTimeOut();
 
+async function asyncCall(time) {
+
+    setTimeout(function () {
+        console.log("Time out! You have waited " + (time/1000) + " seconds");
+    }, time);
+}
+
+async function wait2Seconds(time) {
+    try {
+        const dataElement = await asyncCall (time);
+        // console.log(dataElement);
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+wait2Seconds(5000);
+
 // 2.2 Convierte la siguiente función con un fetch utilizando async-await. 
 // Recuerda que para usar .fetch() tendrás que probar el ejercicio en el navegador;
 // function getCharacters () {
@@ -138,7 +156,25 @@ console.log("- - - - - ITERATION # 2 - - - - -");
 
 // getCharacters();
 
+async function getRequest(url) {
+    const res = await fetch(url);
+    if (res.ok){
+        return res.json();
+    } else {
+        throw new Error ("Bad response");
+    }
+}
 
+async function getData(url) {
+    try {
+        const data = await getRequest(url);
+        console.log(data);
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+getData('https://rickandmortyapi.com/api/character');
 
 
 
